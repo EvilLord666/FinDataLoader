@@ -4,6 +4,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using FinApiIntegrations;
 using FinApiIntegrations.Data;
 
@@ -27,10 +29,11 @@ namespace FinApiIntegrations.Yahoo
                     string urlWithParams = String.Format(YahooFinanceStatUrlTemplate, range, interval, stock);
                     HttpResponseMessage response = await httpClient.GetAsync(urlWithParams);
                     string responseBody = await response.Content.ReadAsStringAsync();
-                    int a = 1;
                     // todo: umv: parse
-
+                    JToken dataRoot = JObject.Parse(responseBody)["chart"]["result"][0];
+                    var timestamps = dataRoot["timestamp"].Value<object[]>();
                     // todo: umv: build selection
+                    int a = 1;
                 }
 
                 return selection;
