@@ -33,7 +33,7 @@ namespace FinApiIntegrations.Yahoo
                     JToken dataRoot = JObject.Parse(responseBody)["chart"]["result"][0];
                     var timestamps = dataRoot["timestamp"].Value<object[]>();
                     // todo: umv: build selection
-                    int a = 1;
+                    //int a = 1;
                 }
 
                 return selection;
