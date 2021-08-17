@@ -6,7 +6,7 @@ using FinApiIntegrations.Data;
 
 namespace FinApiIntegrations
 {
-    public interface IFinDataLoader
+    public interface IFinDataLoaderService
     {
         Task<MarketSelection> LoadAsync(string range, string interval, string stock);
     }
