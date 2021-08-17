@@ -27,7 +27,7 @@ namespace FinApiIntegrations.Yahoo
                     string urlWithParams = String.Format(YahooFinanceStatUrlTemplate, range, interval, stock);
                     HttpResponseMessage response = await httpClient.GetAsync(urlWithParams);
                     string responseBody = await response.Content.ReadAsStringAsync();
-
+                    int a = 1;
                     // todo: umv: parse
 
                     // todo: umv: build selection
@@ -45,7 +45,7 @@ namespace FinApiIntegrations.Yahoo
         }
 
         private const string YahooBaseUrl = "https://query1.finance.yahoo.com/v7/finance/chart/AAPL";
-        private const string YahooFinanceStatUrlTemplate = YahooBaseUrl + "/?range={0}&interval={1}&indicators={2}&includeTimestamps=true";
+        private const string YahooFinanceStatUrlTemplate = YahooBaseUrl + "?range={0}&interval={1}&indicators={2}&includeTimestamps=true";
 
         private ILogger<YahooFinanceLoaderService> _logger;
     }

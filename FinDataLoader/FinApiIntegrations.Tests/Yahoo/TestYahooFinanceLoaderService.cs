@@ -13,7 +13,7 @@ namespace FinApiIntegrations.Tests.Yahoo
     public class TestYahooFinanceLoaderService
     {
         [Theory]
-        [InlineData("2y", "1d", "quotes")]
+        [InlineData("2y", "1d", "quote")]
         public void TestLoadAsync(string range, string interval, string indicators)
         {
             Task<MarketSelection> loadTask = _loader.LoadAsync(range, interval, indicators);
