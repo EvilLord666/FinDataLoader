@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader", "FinDataLoader\FinDataLoader.csproj", "{D4374070-F843-425F-B5B0-B21953E5EFDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinApiIntegrations", "FinApiIntegrations\FinApiIntegrations.csproj", "{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4374070-F843-425F-B5B0-B21953E5EFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4374070-F843-425F-B5B0-B21953E5EFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4374070-F843-425F-B5B0-B21953E5EFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4374070-F843-425F-B5B0-B21953E5EFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF00FA83-007A-4CAE-B46D-58587BEC1C1A}
+	EndGlobalSection
+EndGlobal
