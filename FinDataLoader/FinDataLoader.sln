@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinDataLoader.Integrations.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Common", "FinDataLoader.Common\FinDataLoader.Common.csproj", "{973DCC21-DAC3-4678-948B-9857AAEFA4AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Export", "FinDataLoader.Export\FinDataLoader.Export.csproj", "{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{973DCC21-DAC3-4678-948B-9857AAEFA4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{973DCC21-DAC3-4678-948B-9857AAEFA4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{973DCC21-DAC3-4678-948B-9857AAEFA4AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
