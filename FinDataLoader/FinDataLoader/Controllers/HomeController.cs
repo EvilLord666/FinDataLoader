@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FinDataLoader.Controllers
+namespace FinDataLoader.Web.Controllers
 {
     public class HomeController : Controller
     {

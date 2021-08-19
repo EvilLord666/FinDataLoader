@@ -1,6 +1,6 @@
 using System;
 
-namespace FinDataLoader.Models
+namespace FinDataLoader.Web.Models
 {
     public class ErrorViewModel
     {
