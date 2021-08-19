@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Common", "Fin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Export", "FinDataLoader.Export\FinDataLoader.Export.csproj", "{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Export.Tests", "FinDataLoader.Export.Tests\FinDataLoader.Export.Tests.csproj", "{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

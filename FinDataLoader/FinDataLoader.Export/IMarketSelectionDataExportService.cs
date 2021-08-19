@@ -6,7 +6,7 @@ using FinDataLoader.Common.Data;
 
 namespace FinDataLoader.Export
 {
-    interface IMarketSelectionDataExportService
+    public interface IMarketSelectionDataExportService
     {
         public Task<bool> ExportAsync(string fileName, MarketSelection data, IDictionary<string, string> exportParams);
     }
