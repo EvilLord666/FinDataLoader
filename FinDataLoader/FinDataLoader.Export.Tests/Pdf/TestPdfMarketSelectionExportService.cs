@@ -22,7 +22,7 @@ namespace FinDataLoader.Export.Tests.Pdf
             data.High.Add(122);
             data.Low.Add(78);
             data.Volume.Add(602);
-            Task<bool> exportTask = _exportService.ExportAsync(@".\onePageData.pdf", null, null);
+            Task<bool> exportTask = _exportService.ExportAsync(@".\onePageData.pdf", data, null);
             exportTask.Wait();
             bool result = exportTask.Result;
             Assert.True(result);

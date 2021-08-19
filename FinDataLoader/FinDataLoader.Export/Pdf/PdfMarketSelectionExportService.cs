@@ -26,7 +26,7 @@ namespace FinDataLoader.Export.Pdf
         {
             try
             {
-                PdfDocument document = new PdfDocument(fileName);
+                PdfDocument document = new PdfDocument();
                 //List<ItemsToDisplay> pdfRows = new List<ItemsToDisplay>();
                 int rowsPerPage = GetRowsPerPage();
                 PdfPage currentPage = null;
