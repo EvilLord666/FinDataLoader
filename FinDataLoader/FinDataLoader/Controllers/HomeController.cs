@@ -1,4 +1,4 @@
-﻿using FinDataLoader.Models;
+﻿using FinDataLoader.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
