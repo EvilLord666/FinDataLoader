@@ -4,11 +4,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Microsoft.Extensions.Logging;
-using FinApiIntegrations;
-using FinApiIntegrations.Data;
-using FinApiIntegrations.Yahoo;
+using FinDataLoader.Integrations;
+using FinDataLoader.Integrations.Yahoo;
+using FinDataLoader.Common.Data;
 
-namespace FinApiIntegrations.Tests.Yahoo
+namespace FinDataLoader.Integrations.Tests.Yahoo
 {
     public class TestYahooFinanceLoaderService
     {

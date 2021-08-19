@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using FinApiIntegrations;
-using FinApiIntegrations.Data;
+using FinDataLoader.Integrations;
+using FinDataLoader.Common.Data;
 
-namespace FinApiIntegrations.Yahoo
+namespace FinDataLoader.Integrations.Yahoo
 {
     public class YahooFinanceLoaderService : IFinDataLoaderService
     {

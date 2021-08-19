@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FinApiIntegrations.Data
+namespace FinDataLoader.Common.Data
 {
     public class MarketSelection
     {

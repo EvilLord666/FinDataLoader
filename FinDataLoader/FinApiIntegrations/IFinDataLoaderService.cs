@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using FinApiIntegrations.Data;
+using FinDataLoader.Common.Data;
 
-namespace FinApiIntegrations
+namespace FinDataLoader.Integrations
 {
     public interface IFinDataLoaderService
     {

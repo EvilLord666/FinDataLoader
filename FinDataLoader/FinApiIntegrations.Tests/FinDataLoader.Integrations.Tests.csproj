@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FinApiIntegrations\FinApiIntegrations.csproj" />
+    <ProjectReference Include="..\FinApiIntegrations\FinDataLoader.Integrations.csproj" />
   </ItemGroup>
 
 </Project>
