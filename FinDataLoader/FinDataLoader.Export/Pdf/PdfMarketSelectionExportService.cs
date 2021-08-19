@@ -15,6 +15,7 @@ namespace FinDataLoader.Export.Pdf
 {
     public class PdfMarketSelectionExportService : IMarketSelectionDataExportService
     {
+        // todo: umv: exportParams reserved for future use
         public async Task<bool> ExportAsync(string fileName, MarketSelection data, IDictionary<string, string> exportParams)
         {
             try
@@ -61,7 +62,7 @@ namespace FinDataLoader.Export.Pdf
                     }
                 }
 
-
+                document.Save(fileName);
                 return true;
             }
             catch (Exception e)
@@ -76,6 +77,21 @@ namespace FinDataLoader.Export.Pdf
         {
             try
             {
+
+                int currentHeightPos = 200;
+                int lineHeight = 30;
+                XFont font = new XFont("OpenSans", 10, XFontStyle.Regular);
+                XTextFormatter tf = new XTextFormatter(gfx);
+                for (int i = 0; i < timeStamps.Count; i++)
+                {
+                    XRect rect = new XRect(60, currentHeightPos, 500, lineHeight);
+                    gfx.DrawRectangle(XBrushes.White, rect);
+
+                    String line = $"{timeStamps[i]} | {open[i]} | {close[i]} | {high[i]} | {low[i]} | {volumes[i]}";
+                    tf.DrawString(line, font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                    currentHeightPos = currentHeightPos + lineHeight;
+                }
                 return true;
             }
             catch (Exception e)
