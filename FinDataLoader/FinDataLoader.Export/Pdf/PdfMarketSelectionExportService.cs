@@ -9,12 +9,18 @@ using PdfSharpCore.Fonts;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Drawing.Layout;
 using FinDataLoader.Common.Data;
+using Microsoft.Extensions.Logging;
 using FinDataLoader.Export;
 
 namespace FinDataLoader.Export.Pdf
 {
     public class PdfMarketSelectionExportService : IMarketSelectionDataExportService
     {
+        public PdfMarketSelectionExportService(ILoggerFactory loggerFactory)
+        {
+            _logger = loggerFactory.CreateLogger<PdfMarketSelectionExportService>();
+        }
+
         // todo: umv: exportParams reserved for future use
         public async Task<bool> ExportAsync(string fileName, MarketSelection data, IDictionary<string, string> exportParams)
         {
@@ -105,5 +111,7 @@ namespace FinDataLoader.Export.Pdf
         {
             return 50;
         }
+
+        private ILogger<PdfMarketSelectionExportService> _logger;
     }
 }
