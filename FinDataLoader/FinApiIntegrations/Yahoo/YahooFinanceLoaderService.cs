@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -22,8 +23,6 @@ namespace FinApiIntegrations.Yahoo
         {
             try
             {
-                MarketSelection selection = new MarketSelection();
-
                 using (HttpClient httpClient = new HttpClient())
                 {
                     string urlWithParams = String.Format(YahooFinanceStatUrlTemplate, range, interval, stock);
@@ -31,12 +30,15 @@ namespace FinApiIntegrations.Yahoo
                     string responseBody = await response.Content.ReadAsStringAsync();
                     // todo: umv: parse
                     JToken dataRoot = JObject.Parse(responseBody)["chart"]["result"][0];
-                    var timestamps = dataRoot["timestamp"].Value<object[]>();
+                    IList<DateTime> timestamps = dataRoot["timestamp"].ToObject<List<long>>().Select(t => Convert(t)).ToList();
                     // todo: umv: build selection
-                    //int a = 1;
+                    IList<decimal> open = dataRoot["indicators"][stock][0]["open"].ToObject<List<decimal>>();
+                    IList<decimal> close = dataRoot["indicators"][stock][0]["close"].ToObject<List<decimal>>();
+                    IList<decimal> high = dataRoot["indicators"][stock][0]["high"].ToObject<List<decimal>>();
+                    IList<decimal> low = dataRoot["indicators"][stock][0]["low"].ToObject<List<decimal>>();
+                    IList<long> volume = dataRoot["indicators"][stock][0]["volume"].ToObject<List<long>>();
+                    return new MarketSelection(timestamps, open, close, high, low, volume);
                 }
-
-                return selection;
             }
             catch (Exception e)
             {
@@ -45,6 +47,13 @@ namespace FinApiIntegrations.Yahoo
             }
 
             throw new NotImplementedException();
+        }
+
+        private DateTime Convert(long timeStamp)
+        {
+            DateTime initial = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            DateTime date = initial.AddSeconds(timeStamp).ToLocalTime();
+            return date;
         }
 
         private const string YahooBaseUrl = "https://query1.finance.yahoo.com/v7/finance/chart/AAPL";

@@ -14,13 +14,19 @@ namespace FinApiIntegrations.Tests.Yahoo
     {
         [Theory]
         [InlineData("2y", "1d", "quote")]
-        public void TestLoadAsync(string range, string interval, string indicators)
+        public void TestLoadAsyncNonEmptyData(string range, string interval, string indicators)
         {
             Task<MarketSelection> loadTask = _loader.LoadAsync(range, interval, indicators);
             loadTask.Wait();
             MarketSelection selection = loadTask.Result;
-
             Assert.NotNull(selection);
+            // todo: umv: because we don't know how to properly check: just see that they are not empty
+            Assert.True(selection.Timestamps.Count > 0);
+            Assert.True(selection.Open.Count > 0);
+            Assert.True(selection.Close.Count > 0);
+            Assert.True(selection.High.Count > 0);
+            Assert.True(selection.Low.Count > 0);
+            Assert.True(selection.Volume.Count > 0);
         }
 
         private IFinDataLoaderService _loader = new YahooFinanceLoaderService(new LoggerFactory());
