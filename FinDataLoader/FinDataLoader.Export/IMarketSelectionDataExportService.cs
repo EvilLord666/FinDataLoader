@@ -8,6 +8,6 @@ namespace FinDataLoader.Export
 {
     interface IMarketSelectionDataExportService
     {
-        public Task<bool> ExportAsync(MarketSelection data, IDictionary<string, string> exportParams);
+        public Task<bool> ExportAsync(string fileName, MarketSelection data, IDictionary<string, string> exportParams);
     }
 }
