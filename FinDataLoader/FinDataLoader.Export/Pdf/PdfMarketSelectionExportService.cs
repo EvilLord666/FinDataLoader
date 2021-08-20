@@ -77,6 +77,44 @@ namespace FinDataLoader.Export.Pdf
             }
         }
 
+        public async Task<bool> ExportAsync(string fileName, IList<CompressedMarketSelectionData> data, IDictionary<string, string> exportParams)
+        {
+            try
+            {
+                PdfDocument document = new PdfDocument();
+                //List<ItemsToDisplay> pdfRows = new List<ItemsToDisplay>();
+                int rowsPerPage = GetRowsPerPage();
+                PdfPage currentPage = null;
+                bool done = false;
+                int pageNumber = 0;
+
+                while (!done)
+                {
+                    currentPage = document.AddPage();
+                    IList<CompressedMarketSelectionData> openPageSelection = data.Skip(pageNumber * rowsPerPage).Take(rowsPerPage).ToList();
+                    if (openPageSelection.Count == 0)
+                        done = true;
+                    else
+                    {
+                        using (XGraphics gfx = XGraphics.FromPdfPage(currentPage))
+                        {
+                            bool res = await ExportPagePortion(gfx, openPageSelection);
+                            if (!res)
+                                return false;
+                        }
+                        pageNumber++;
+                    }
+                }
+
+                document.Save(fileName);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         private async Task<bool> ExportPagePortion(XGraphics gfx, IList<DateTime> timeStamps, IList<decimal> open, 
                                                    IList<decimal> close, IList<decimal> high, IList<decimal> low, 
                                                    IList<long> volumes)
@@ -94,6 +132,32 @@ namespace FinDataLoader.Export.Pdf
                     gfx.DrawRectangle(XBrushes.White, rect);
 
                     String line = $"{timeStamps[i]} | {open[i]} | {close[i]} | {high[i]} | {low[i]} | {volumes[i]}";
+                    tf.DrawString(line, font, XBrushes.Black, rect, XStringFormats.TopLeft);
+
+                    currentHeightPos = currentHeightPos + lineHeight;
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        private async Task<bool> ExportPagePortion(XGraphics gfx, IList<CompressedMarketSelectionData> data)
+        {
+            try
+            {
+                int currentHeightPos = 50;
+                int lineHeight = 30;
+                XFont font = new XFont("OpenSans", 10, XFontStyle.Regular);
+                XTextFormatter tf = new XTextFormatter(gfx);
+                foreach (CompressedMarketSelectionData d in data)
+                {
+                    XRect rect = new XRect(60, currentHeightPos, 500, lineHeight);
+                    gfx.DrawRectangle(XBrushes.White, rect);
+
+                    String line = $"{d.Begin} | {d.End} | {d.Open} | {d.Close} | {d.High} | {d.Low}";
                     tf.DrawString(line, font, XBrushes.Black, rect, XStringFormats.TopLeft);
 
                     currentHeightPos = currentHeightPos + lineHeight;
