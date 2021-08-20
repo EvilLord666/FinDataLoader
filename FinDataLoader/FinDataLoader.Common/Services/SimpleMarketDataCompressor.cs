@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FinDataLoader.Common.Services
@@ -27,17 +28,25 @@ namespace FinDataLoader.Common.Services
             _comparators[CompessionOption.Year] = CheckDatesAreFromSameYear;
         }
 
-        public MarketSelection Compress(MarketSelection data, CompessionOption option)
+        public IList<CompressedMarketSelectionData> Compress(MarketSelection data, CompessionOption option)
         {
-            MarketSelection compressedSelection = new MarketSelection();
+            IList<CompressedMarketSelectionData> compressedSelection = new List<CompressedMarketSelectionData>();
             IList<Range> timeRanges = GetIndexRanges(data, option);
 
             foreach (Range range in timeRanges)
-            { 
+            {
                 //  1. Open - for initial index
+                decimal openValue = data.Open[range.Begin];
                 //  2. Close - for last index
+                decimal closeValue = data.Open[range.End];
                 //  3. Hign - max value
+                IList<decimal> highValues = data.High.ToList().GetRange(range.Begin, range.End - range.Begin);
+                decimal highValue = highValues.Max();
                 //  4. Low - min value
+                IList<decimal> lowValues = data.Low.ToList().GetRange(range.Begin, range.End - range.Begin);
+                decimal lowValue = lowValues.Min();
+                compressedSelection.Add(new CompressedMarketSelectionData(data.Timestamps[range.Begin], data.Timestamps[range.End],
+                                                                          openValue, closeValue, highValue, lowValue));
             }
 
             return compressedSelection;

@@ -14,6 +14,6 @@ namespace FinDataLoader.Common.Services
 
     public interface IMarketSelectionDataCompressor
     {
-        public MarketSelection Compress(MarketSelection data, CompessionOption option);
+        public IList<CompressedMarketSelectionData> Compress(MarketSelection data, CompessionOption option);
     }
 }
