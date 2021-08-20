@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Export", "Fin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Export.Tests", "FinDataLoader.Export.Tests\FinDataLoader.Export.Tests.csproj", "{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Common.Tests", "FinDataLoader.Common.Tests\FinDataLoader.Common.Tests.csproj", "{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
