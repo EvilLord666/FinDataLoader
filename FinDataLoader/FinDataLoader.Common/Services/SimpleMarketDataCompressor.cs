@@ -29,8 +29,18 @@ namespace FinDataLoader.Common.Services
 
         public MarketSelection Compress(MarketSelection data, CompessionOption option)
         {
-            throw new NotImplementedException();
-            // analyze data split by indexes
+            MarketSelection compressedSelection = new MarketSelection();
+            IList<Range> timeRanges = GetIndexRanges(data, option);
+
+            foreach (Range range in timeRanges)
+            { 
+                //  1. Open - for initial index
+                //  2. Close - for last index
+                //  3. Hign - max value
+                //  4. Low - min value
+            }
+
+            return compressedSelection;
         }
 
         private IList<Range> GetIndexRanges(MarketSelection data, CompessionOption option)
