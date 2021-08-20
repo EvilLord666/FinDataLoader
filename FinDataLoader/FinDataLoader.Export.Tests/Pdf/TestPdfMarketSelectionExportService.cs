@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,10 @@ namespace FinDataLoader.Export.Tests.Pdf
         [Fact]
         public void TestExportAsyncOnePageData()
         {
+            string pdfFileName = @".\onePageData.pdf";
+            if (File.Exists(pdfFileName))
+                File.Delete(pdfFileName);
+
             MarketSelection data = new MarketSelection();
             data.Timestamps.Add(new DateTime());
             data.Open.Add(100);
@@ -22,10 +27,13 @@ namespace FinDataLoader.Export.Tests.Pdf
             data.High.Add(122);
             data.Low.Add(78);
             data.Volume.Add(602);
-            Task<bool> exportTask = _exportService.ExportAsync(@".\onePageData.pdf", data, null);
+            Task<bool> exportTask = _exportService.ExportAsync(pdfFileName, data, null);
             exportTask.Wait();
             bool result = exportTask.Result;
             Assert.True(result);
+
+            if (File.Exists(pdfFileName))
+                File.Delete(pdfFileName);
         }
 
         private IMarketSelectionDataExportService _exportService = new PdfMarketSelectionExportService(new LoggerFactory());

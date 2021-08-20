@@ -84,7 +84,7 @@ namespace FinDataLoader.Export.Pdf
             try
             {
 
-                int currentHeightPos = 200;
+                int currentHeightPos = 50;
                 int lineHeight = 30;
                 XFont font = new XFont("OpenSans", 10, XFontStyle.Regular);
                 XTextFormatter tf = new XTextFormatter(gfx);
