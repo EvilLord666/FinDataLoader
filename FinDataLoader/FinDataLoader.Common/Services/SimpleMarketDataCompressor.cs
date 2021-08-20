@@ -38,12 +38,12 @@ namespace FinDataLoader.Common.Services
                 //  1. Open - for initial index
                 decimal openValue = data.Open[range.Begin];
                 //  2. Close - for last index
-                decimal closeValue = data.Open[range.End];
+                decimal closeValue = data.Close[range.End];
                 //  3. Hign - max value
-                IList<decimal> highValues = data.High.ToList().GetRange(range.Begin, range.End - range.Begin);
+                IList<decimal> highValues = data.High.ToList().GetRange(range.Begin, range.End - range.Begin + 1);
                 decimal highValue = highValues.Max();
                 //  4. Low - min value
-                IList<decimal> lowValues = data.Low.ToList().GetRange(range.Begin, range.End - range.Begin);
+                IList<decimal> lowValues = data.Low.ToList().GetRange(range.Begin, range.End - range.Begin + 1);
                 decimal lowValue = lowValues.Min();
                 compressedSelection.Add(new CompressedMarketSelectionData(data.Timestamps[range.Begin], data.Timestamps[range.End],
                                                                           openValue, closeValue, highValue, lowValue));
