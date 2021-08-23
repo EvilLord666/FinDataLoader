@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinDataLoader.Web", "FinDataLoader\FinDataLoader.Web.csproj", "{D4374070-F843-425F-B5B0-B21953E5EFDC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinDataLoader.Integrations", "FinApiIntegrations\FinDataLoader.Integrations.csproj", "{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinDataLoader.Integrations.Tests", "FinApiIntegrations.Tests\FinDataLoader.Integrations.Tests.csproj", "{79909BF0-7FBC-41C1-AA8F-2731D937A859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Common", "FinDataLoader.Common\FinDataLoader.Common.csproj", "{973DCC21-DAC3-4678-948B-9857AAEFA4AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinDataLoader.Common", "FinDataLoader.Common\FinDataLoader.Common.csproj", "{973DCC21-DAC3-4678-948B-9857AAEFA4AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Export", "FinDataLoader.Export\FinDataLoader.Export.csproj", "{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinDataLoader.Export", "FinDataLoader.Export\FinDataLoader.Export.csproj", "{2C8BDC1D-CFB6-4975-B58D-EC666C0CAADB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Export.Tests", "FinDataLoader.Export.Tests\FinDataLoader.Export.Tests.csproj", "{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinDataLoader.Export.Tests", "FinDataLoader.Export.Tests\FinDataLoader.Export.Tests.csproj", "{6CC2C129-6EC8-4A5B-BE67-6C22C560CB82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Common.Tests", "FinDataLoader.Common.Tests\FinDataLoader.Common.Tests.csproj", "{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinDataLoader.Common.Tests", "FinDataLoader.Common.Tests\FinDataLoader.Common.Tests.csproj", "{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.WebApi", "FinDataLoader.WebApi\FinDataLoader.WebApi.csproj", "{2EB967D5-C953-454F-94EE-A59DA0E696F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinDataLoader.Dto", "FinDataLoader.Dto\FinDataLoader.Dto.csproj", "{C107E5EB-01F0-4FAE-99F6-A8FE20F1E849}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D4374070-F843-425F-B5B0-B21953E5EFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D4374070-F843-425F-B5B0-B21953E5EFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D4374070-F843-425F-B5B0-B21953E5EFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D4374070-F843-425F-B5B0-B21953E5EFDC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBC5D9BF-075A-4FEF-A6D1-5C26869B159C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +49,14 @@ Global
 		{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE4374C1-5F0A-4920-AA59-9FB5F8F4D54C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB967D5-C953-454F-94EE-A59DA0E696F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB967D5-C953-454F-94EE-A59DA0E696F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB967D5-C953-454F-94EE-A59DA0E696F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB967D5-C953-454F-94EE-A59DA0E696F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C107E5EB-01F0-4FAE-99F6-A8FE20F1E849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C107E5EB-01F0-4FAE-99F6-A8FE20F1E849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C107E5EB-01F0-4FAE-99F6-A8FE20F1E849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C107E5EB-01F0-4FAE-99F6-A8FE20F1E849}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
