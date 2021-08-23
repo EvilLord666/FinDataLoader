@@ -46,6 +46,36 @@ namespace FinDataLoader.WebApi.Controllers.api
             return result;
         }
 
+        // https://localhost:44368/api/market/yahoo/compressed/pdf/?range=2y&interval=1d&indicators=quote&compress=week
+        [HttpGet("/api/market/yahoo/compressed/pdf")]
+        public async Task<FileContentResult> GetYahooCompressedMarketSelectionInPdf([FromQuery] string range, [FromQuery] string interval,
+                                                                                    [FromQuery] string indicators, [FromQuery] string compress)
+        {
+            CompessionOption? option = _compressOptions[compress.ToLower()];
+            if (option == null)
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return null;
+            }
+            string fileName = $"Yahoo_{range}_{interval}_{indicators}_{compress}_{Guid.NewGuid()}.pdf";
+            bool result = await _manager.ExportYahooCompressedMarketSelection(fileName, range, interval, indicators, option.Value);
+            if (!result)
+            {
+                // todo: umv: think about how to handle 
+                // assume that we are having bad params, therefore we return 400
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                return null;
+            }
+            using (var net = new System.Net.WebClient())
+            {
+                byte[] data = await net.DownloadDataTaskAsync(fileName);
+                return new FileContentResult(data, "application/pdf")
+                {
+                    FileDownloadName = fileName
+                };
+            }
+        }
+
         private readonly MarketSelectionManager _manager;
         private readonly IDictionary<string, CompessionOption> _compressOptions = new Dictionary<string, CompessionOption>()
         {
