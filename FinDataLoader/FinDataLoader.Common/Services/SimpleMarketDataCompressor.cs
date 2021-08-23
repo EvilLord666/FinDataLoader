@@ -21,6 +21,7 @@ namespace FinDataLoader.Common.Services
 
     public class SimpleMarketDataCompressor : IMarketSelectionDataCompressor
     {
+        // todo: umv: add logger here via LoggerFactory
         public SimpleMarketDataCompressor()
         {
             _comparators[CompessionOption.Week] = CheckDatesAreFromSameWeek;
