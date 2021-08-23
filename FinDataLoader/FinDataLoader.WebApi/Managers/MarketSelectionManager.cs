@@ -21,7 +21,7 @@ namespace FinDataLoader.WebApi.Managers
             _logger = loggerFactory.CreateLogger<MarketSelectionManager>();
             // todo: umv: instantiate services via DI
             _findataLoaderService = new YahooFinanceLoaderService(loggerFactory);
-            _compressorService = new SimpleMarketDataCompressor();
+            _compressorService = new SimpleMarketDataCompressor(loggerFactory);
             _exportService = new PdfMarketSelectionExportService(loggerFactory);
         }
 

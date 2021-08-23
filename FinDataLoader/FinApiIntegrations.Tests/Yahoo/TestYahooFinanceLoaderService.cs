@@ -14,6 +14,8 @@ namespace FinDataLoader.Integrations.Tests.Yahoo
     {
         [Theory]
         [InlineData("2y", "1d", "quote")]
+        [InlineData("1y", "1d", "quote")]
+        [InlineData("3y", "1d", "quote")]
         public void TestLoadAsyncNonEmptyData(string range, string interval, string indicators)
         {
             Task<MarketSelection> loadTask = _loader.LoadAsync(range, interval, indicators);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.Logging;
 using FinDataLoader.Common.Data;
 using FinDataLoader.Common.Services;
 using FinDataLoader.Common.Tests.Checkers;
@@ -103,6 +104,6 @@ namespace FinDataLoader.Common.Tests.Services
             CompressedMarketSelectionDataChecker.Check(expectedCompressedData, actualCompressedData);
         }
 
-        private IMarketSelectionDataCompressor _compressor = new SimpleMarketDataCompressor();
+        private IMarketSelectionDataCompressor _compressor = new SimpleMarketDataCompressor(new LoggerFactory());
     }
 }

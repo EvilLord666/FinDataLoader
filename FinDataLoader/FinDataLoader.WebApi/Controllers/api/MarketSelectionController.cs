@@ -66,7 +66,7 @@ namespace FinDataLoader.WebApi.Controllers.api
                 HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return null;
             }
-            using (var net = new System.Net.WebClient())
+            using (var net = new WebClient())
             {
                 byte[] data = await net.DownloadDataTaskAsync(fileName);
                 return new FileContentResult(data, "application/pdf")

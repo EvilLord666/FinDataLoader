@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace FinDataLoader.Common.Services
 {
@@ -22,8 +23,10 @@ namespace FinDataLoader.Common.Services
     public class SimpleMarketDataCompressor : IMarketSelectionDataCompressor
     {
         // todo: umv: add logger here via LoggerFactory
-        public SimpleMarketDataCompressor()
+        public SimpleMarketDataCompressor(ILoggerFactory loggerFactory)
         {
+            _logger = loggerFactory.CreateLogger<SimpleMarketDataCompressor>();
+
             _comparators[CompessionOption.Week] = CheckDatesAreFromSameWeek;
             _comparators[CompessionOption.Month] = CheckDatesAreFromSameMonth;
             _comparators[CompessionOption.Year] = CheckDatesAreFromSameYear;
@@ -31,26 +34,42 @@ namespace FinDataLoader.Common.Services
 
         public IList<CompressedMarketSelectionData> Compress(MarketSelection data, CompessionOption option)
         {
-            IList<CompressedMarketSelectionData> compressedSelection = new List<CompressedMarketSelectionData>();
-            IList<Range> timeRanges = GetIndexRanges(data, option);
-
-            foreach (Range range in timeRanges)
+            try
             {
-                //  1. Open - for initial index
-                decimal openValue = data.Open[range.Begin];
-                //  2. Close - for last index
-                decimal closeValue = data.Close[range.End];
-                //  3. Hign - max value
-                IList<decimal> highValues = data.High.ToList().GetRange(range.Begin, range.End - range.Begin + 1);
-                decimal highValue = highValues.Max();
-                //  4. Low - min value
-                IList<decimal> lowValues = data.Low.ToList().GetRange(range.Begin, range.End - range.Begin + 1);
-                decimal lowValue = lowValues.Min();
-                compressedSelection.Add(new CompressedMarketSelectionData(data.Timestamps[range.Begin], data.Timestamps[range.End],
-                                                                          openValue, closeValue, highValue, lowValue));
-            }
+                IList<CompressedMarketSelectionData> compressedSelection = new List<CompressedMarketSelectionData>();
+                IList<Range> timeRanges = GetIndexRanges(data, option);
 
-            return compressedSelection;
+                foreach (Range range in timeRanges)
+                {
+                    //  1. Open - for initial index
+                    decimal? openValue = null;
+                    if (range.Begin < data.Open.Count)
+                        openValue = data.Open[range.Begin];
+                    //  2. Close - for last index
+                    decimal? closeValue = null;
+                    if (range.End < data.Open.Count)
+                        closeValue = data.Close[range.End];
+                    //  3. Hign - max value
+                    IList<decimal> highValues = data.High.ToList().GetRange(range.Begin, range.End - range.Begin + 1);
+                    decimal? highValue = null;
+                    if (highValues.Any())
+                        highValue = highValues.Max();
+                    //  4. Low - min value
+                    IList<decimal> lowValues = data.Low.ToList().GetRange(range.Begin, range.End - range.Begin + 1);
+                    decimal? lowValue = null;
+                    if (lowValues.Any())
+                        lowValue = lowValues.Min();
+                    compressedSelection.Add(new CompressedMarketSelectionData(data.Timestamps[range.Begin], data.Timestamps[range.End],
+                                                                              openValue, closeValue, highValue, lowValue));
+                }
+
+                return compressedSelection;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error occurred during market data compression: {e.Message}");
+                return null;
+            }
         }
 
         private IList<Range> GetIndexRanges(MarketSelection data, CompessionOption option)
@@ -77,7 +96,7 @@ namespace FinDataLoader.Common.Services
                     }
                     else
                     {
-                        ranges.Add(new Range(beginIndex.Value, endIndex.Value));
+                        ranges.Add(new Range(beginIndex.Value, endIndex ?? beginIndex.Value));
                         beginIndex = null;
                     }
                 }
@@ -112,5 +131,6 @@ namespace FinDataLoader.Common.Services
         private CultureInfo _cultureInfo = new CultureInfo("ru-RU");
 
         private IDictionary<CompessionOption, Func<DateTime, DateTime, bool>> _comparators = new Dictionary<CompessionOption, Func<DateTime, DateTime, bool>>();
+        private ILogger<SimpleMarketDataCompressor> _logger;
     }
 }
