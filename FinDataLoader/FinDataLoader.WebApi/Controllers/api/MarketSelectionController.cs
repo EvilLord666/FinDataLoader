@@ -12,6 +12,7 @@ namespace FinDataLoader.WebApi.Controllers.api
     [ApiController]
     public class MarketSelectionController : ControllerBase
     {
+        // https://localhost:44368/api/market/yahoo/compressed
         [HttpGet("/api/market/yahoo/compressed")]
         public async Task<IList<CompressedMarketSelectionDto>> getYahooCompressedMarketSelection()
         {
