@@ -22,12 +22,12 @@ namespace FinDataLoader.WebApi.Managers
             _compressorService = new SimpleMarketDataCompressor();
         }
 
-        public async Task<IList<CompressedMarketSelectionDto>> GetYahooCompressedMarketSelection(string range, string interval, string stock, 
+        public async Task<IList<CompressedMarketSelectionDto>> GetYahooCompressedMarketSelection(string range, string interval, string indicators, 
                                                                                                  CompessionOption compressOption)
         {
             try
             {
-                MarketSelection selection = await _findataLoaderService.LoadAsync(range, interval, stock);
+                MarketSelection selection = await _findataLoaderService.LoadAsync(range, interval, indicators);
                 IList<CompressedMarketSelectionData> compressedData = _compressorService.Compress(selection, compressOption);
                 return compressedData.Select(d => CompressedMarketSelectionDataFactory.Create(d)).ToList();
             }

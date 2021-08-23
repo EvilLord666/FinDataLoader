@@ -22,22 +22,36 @@ namespace FinDataLoader.WebApi.Controllers.api
             _manager = new MarketSelectionManager(loggerFactory);
         }
 
-        // https://localhost:44368/api/market/yahoo/compressed
+        // https://localhost:44368/api/market/yahoo/compressed/?range=2y&interval=1d&indicators=quote&compress=week
         [HttpGet("/api/market/yahoo/compressed")]
-        public async Task<IList<CompressedMarketSelectionDto>> GetYahooCompressedMarketSelection()
+        public async Task<IList<CompressedMarketSelectionDto>> GetYahooCompressedMarketSelection([FromQuery] string range, [FromQuery] string interval, 
+                                                                                                 [FromQuery] string indicators, [FromQuery] string compress)
         {
-            IList<CompressedMarketSelectionDto> result = await _manager.GetYahooCompressedMarketSelection("2y", "1d", "quote", CompessionOption.Week);
+            // todo: umv: i suppose that indicators should be array i.e. ?indicators=ind1&indicators=ind2&...
+            CompessionOption? option = _compressOptions[compress.ToLower()];
+            if (option == null)
+            {
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return null;
+            }
+            IList<CompressedMarketSelectionDto> result = await _manager.GetYahooCompressedMarketSelection(range, interval, indicators, option.Value);
             if (result == null)
             {
                 // todo: umv: think about how to handle 
                 // assume that we are having bad params, therefore we return 400
-                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return null;
             }
 
             return result;
         }
 
-        private MarketSelectionManager _manager;
+        private readonly MarketSelectionManager _manager;
+        private readonly IDictionary<string, CompessionOption> _compressOptions = new Dictionary<string, CompessionOption>()
+        {
+            { "week", CompessionOption.Week },
+            { "month", CompessionOption.Month },
+            { "year", CompessionOption.Year }
+        };
     }
 }
