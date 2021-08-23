@@ -57,6 +57,51 @@ namespace FinDataLoader.Common.Tests.Services
         }
 
         [Fact]
+        public void TestCompressDataWeeklyWithWeekOverYear()
+        {
+            MarketSelection data = new MarketSelection()
+            {
+                Timestamps = new List<DateTime>()
+                {
+                    new DateTime(2020, 12, 28),
+                    new DateTime(2020, 12, 29),
+                    new DateTime(2021, 1, 1) ,
+                    new DateTime(2021, 1, 5) ,
+                    new DateTime(2021, 1, 8)
+                },
+
+                Open = new List<decimal>()
+                {
+                    70, 72, 74, 73, 78
+                },
+
+                Close = new List<decimal>()
+                {
+                    73, 72, 75, 70, 80
+                },
+
+                High = new List<decimal>()
+                {
+                    90, 92, 94, 99, 90
+                },
+
+                Low = new List<decimal>()
+                {
+                    56, 55, 59, 50, 44
+                }
+            };
+
+            IList<CompressedMarketSelectionData> actualCompressedData = _compressor.Compress(data, CompessionOption.Week);
+            IList<CompressedMarketSelectionData> expectedCompressedData = new List<CompressedMarketSelectionData>()
+            {
+                new CompressedMarketSelectionData(new DateTime(2020, 12, 28), new DateTime(2021, 1, 1), 70, 75, 94, 55),
+                new CompressedMarketSelectionData(new DateTime(2021, 1, 5), new DateTime(2021, 1, 8), 73, 80, 99, 44)
+            };
+
+            CompressedMarketSelectionDataChecker.Check(expectedCompressedData, actualCompressedData);
+        }
+
+        [Fact]
         public void TestCompressDataMontly()
         {
             MarketSelection data = new MarketSelection()

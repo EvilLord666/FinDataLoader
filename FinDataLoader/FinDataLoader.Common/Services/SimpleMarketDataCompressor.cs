@@ -114,7 +114,12 @@ namespace FinDataLoader.Common.Services
             CalendarWeekRule weekRule = _cultureInfo.DateTimeFormat.CalendarWeekRule;
             DayOfWeek firstDayOfWeek = _cultureInfo.DateTimeFormat.FirstDayOfWeek;
             int initialDateWeekNumber = calendar.GetWeekOfYear(initial, weekRule, firstDayOfWeek);
+            int lastYearWeekNumber = calendar.GetWeekOfYear(new DateTime(initial.Year, 12, 31), weekRule, firstDayOfWeek);
             int currentDateWeekNumber = calendar.GetWeekOfYear(current, weekRule, firstDayOfWeek);
+            if (initialDateWeekNumber == lastYearWeekNumber && currentDateWeekNumber == 1)
+            {
+                return true;
+            }
             return initialDateWeekNumber == currentDateWeekNumber;
         }
 
