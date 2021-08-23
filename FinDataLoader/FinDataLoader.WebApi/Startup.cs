@@ -26,7 +26,8 @@ namespace FinDataLoader.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddLogging();
+            services.AddLogging(loggingBuilder => loggingBuilder.AddConfiguration(Configuration).AddConsole());
+            services.AddLogging(loggingBuilder => loggingBuilder.AddConfiguration(Configuration).AddDebug());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

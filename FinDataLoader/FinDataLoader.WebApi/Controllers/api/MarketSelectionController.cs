@@ -16,7 +16,7 @@ namespace FinDataLoader.WebApi.Controllers.api
     [ApiController]
     public class MarketSelectionController : ControllerBase
     {
-        public MarketSelectionController(LoggerFactory loggerFactory)
+        public MarketSelectionController(ILoggerFactory loggerFactory)
         {
             // todo: umv: create scoped via DI
             _manager = new MarketSelectionManager(loggerFactory);
@@ -26,7 +26,7 @@ namespace FinDataLoader.WebApi.Controllers.api
         [HttpGet("/api/market/yahoo/compressed")]
         public async Task<IList<CompressedMarketSelectionDto>> GetYahooCompressedMarketSelection()
         {
-            IList<CompressedMarketSelectionDto> result = await _manager.GetYahooCompressedMarketSelection("2y", "1d", "quotes", CompessionOption.Week);
+            IList<CompressedMarketSelectionDto> result = await _manager.GetYahooCompressedMarketSelection("2y", "1d", "quote", CompessionOption.Week);
             if (result == null)
             {
                 // todo: umv: think about how to handle 

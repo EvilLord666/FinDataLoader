@@ -14,7 +14,7 @@ namespace FinDataLoader.WebApi.Managers
 {
     public class MarketSelectionManager
     {
-        public MarketSelectionManager(LoggerFactory loggerFactory)
+        public MarketSelectionManager(ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory.CreateLogger<MarketSelectionManager>();
             // todo: umv: instantiate services via DI
